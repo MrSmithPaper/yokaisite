@@ -1,91 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yo-kai Watch Fan Site</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Yo-kai Watch Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Overlay flou -->
-  <div class="overlay" id="overlay"></div>
-
-<!-- Bouton menu -->
-<div class="radial-menu-container" id="radial-menu-container">
-  <button class="radial-button" id="radial-button">
-    <img src="yokaiwatch.png" alt="Menu Yo-kai" />
-  </button>
-</div>
-
-<!-- Cercle + menu -->
-<div class="yokai-cadran" id="yokai-cadran">
-  <img src="menu1.png" alt="Cadran Yo-kai" />
-  <div class="radial-links" id="radial-links">
-    <a href="#accueil" class="radial-link top-left">Accueil</a>
-    <a href="#yokai" class="radial-link top-right">Yo-kai</a>
-    <a href="#ressources" class="radial-link bottom-left">Ressources</a>
-    <a href="#infos" class="radial-link bottom-right">Infos</a>
-  </div>
-</div>
-
-
-  <!-- Contenu principal -->
   <header>
-    <h1>Yo-kai Watch Fan Site</h1>
+    <h1>Menu Yo-kai Watch</h1>
   </header>
 
-  <main>
-    <section class="section" id="accueil">
-      <h2>Bienvenue !</h2>
-      <p>Découvre tout l’univers Yo-kai Watch : infos, personnages, astuces et plus encore.</p>
-    </section>
+  <!-- Conteneur du bouton -->
+  <div class="radial-menu-container">
+    <button class="radial-button">
+      <img src="yokaiwatch.png" alt="Ouvrir le cadran Yo-kai">
+    </button>
+  </div>
 
-    <section class="section" id="yokai">
-      <h2>Les Yo-kai</h2>
-      <p>Consulte la liste complète des Yo-kai, leur rang, leurs pouvoirs et comment les obtenir !</p>
-    </section>
+  <!-- Overlay flou -->
+  <div class="overlay"></div>
 
-    <section class="section" id="ressources">
-      <h2>Ressources</h2>
-      <p>Télécharge des fonds d’écran, écoute les musiques des jeux et explore des vidéos inédites.</p>
-    </section>
-  </main>
+  <!-- Cadran Yo-kai central avec texte courbé cliquable -->
+  <div class="yokai-cadran">
+    <img src="menu1.png" alt="Montre Yo-kai">
+
+    <svg class="radial-svg" viewBox="0 0 300 300">
+      <defs>
+        <path id="arc-accueil" d="M 40,160 A 110,110 0 0,1 160,40" />
+        <path id="arc-yokai" d="M 160,40 A 110,110 0 0,1 260,160" />
+        <path id="arc-infos" d="M 260,160 A 110,110 0 0,1 160,260" />
+        <path id="arc-ressources" d="M 160,250 A 110,110 0 0,1 40,150" /> <!-- Réajusté -->
+      </defs>
+
+      <text class="arc arc-accueil">
+        <a xlink:href="index.html">
+          <textPath href="#arc-accueil" startOffset="50%" text-anchor="middle">Accueil</textPath>
+        </a>
+      </text>
+      <text class="arc arc-yokai">
+        <a xlink:href="yo-kai.html">
+          <textPath href="#arc-yokai" startOffset="50%" text-anchor="middle">Yo-kai</textPath>
+        </a>
+      </text>
+      <text class="arc arc-infos">
+        <a xlink:href="infos.html">
+          <textPath href="#arc-infos" startOffset="50%" text-anchor="middle">Infos</textPath>
+        </a>
+      </text>
+      <text class="arc arc-ressources">
+        <a xlink:href="ressources.html">
+          <textPath href="#arc-ressources" startOffset="58%" text-anchor="middle">Ressources</textPath>
+        </a>
+      </text>
+    </svg>
+  </div>
+
+  <!-- Sections de contenu -->
+  <section class="section" id="accueil">
+    <h2>Accueil</h2>
+    <p>Bienvenue dans l’univers Yo-kai&nbsp;!</p>
+  </section>
+
+  <section class="section" id="yokai">
+    <h2>Yo-kai</h2>
+    <p>Découvre les Yo-kai et leurs pouvoirs.</p>
+  </section>
+
+  <section class="section" id="infos">
+    <h2>Infos</h2>
+    <p>Dernières actualités et informations.</p>
+  </section>
+
+  <section class="section" id="ressources">
+    <h2>Ressources</h2>
+    <p>Guides, outils et téléchargements.</p>
+  </section>
 
   <footer>
-    <p>Fait avec ❤️ par un fan de Yo-kai Watch</p>
+    Site développé avec ❤️ par Sasha.
   </footer>
 
-  <!-- Son d'ouverture -->
-  <audio id="menu-sound" src="sound.mp3" preload="auto"></audio>
-
-  <!-- Script -->
   <script>
-    const radialBtn = document.getElementById('radial-button');
-    const radialLinks = document.getElementById('radial-links');
-    const menuSound = document.getElementById('menu-sound');
-    const overlay = document.getElementById('overlay');
-    const cadran = document.getElementById('yokai-cadran');
+    const btn = document.querySelector('.radial-button');
+    const cadran = document.querySelector('.yokai-cadran');
+    const overlay = document.querySelector('.overlay');
 
-    radialBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = radialLinks.classList.toggle('open');
-      overlay.classList.toggle('active', isOpen);
-      cadran.classList.toggle('active', isOpen);
-      menuSound.currentTime = 0;
-      menuSound.play();
+    btn.addEventListener('click', () => {
+      cadran.classList.toggle('active');
+      overlay.classList.toggle('active');
     });
 
-    document.addEventListener('click', (e) => {
-      if (
-        !radialLinks.contains(e.target) &&
-        !radialBtn.contains(e.target)
-      ) {
-        radialLinks.classList.remove('open');
-        overlay.classList.remove('active');
-        cadran.classList.remove('active');
-      }
+    overlay.addEventListener('click', () => {
+      cadran.classList.remove('active');
+      overlay.classList.remove('active');
     });
   </script>
 </body>

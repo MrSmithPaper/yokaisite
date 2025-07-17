@@ -60,7 +60,7 @@ footer {
   color: #777;
 }
 
-/* --- Bouton menu (en haut à gauche) --- */
+/* --- Bouton menu radial --- */
 .radial-menu-container {
   position: fixed;
   top: 20px;
@@ -79,12 +79,17 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: pulse 2s infinite;
+  animation: pulse 2.5s infinite;
+  transition: background-color 0.3s ease;
+}
+
+.radial-button:hover {
+  background-color: #fbc02d;
 }
 
 .radial-button img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
   object-fit: contain;
 }
@@ -97,8 +102,8 @@ footer {
   backdrop-filter: blur(5px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 800;
+  transition: opacity 0.4s ease;
+  z-index: 900;
 }
 
 .overlay.active {
@@ -106,7 +111,7 @@ footer {
   pointer-events: auto;
 }
 
-/* --- Cadran Yo-kai (menu central) --- */
+/* --- Cadran Yo-kai central --- */
 .yokai-cadran {
   position: fixed;
   top: 50%;
@@ -115,9 +120,9 @@ footer {
   height: 300px;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  z-index: 850;
+  z-index: 950;
   pointer-events: none;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,6 +132,7 @@ footer {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   pointer-events: auto;
+  animation: popIn 0.4s ease forwards;
 }
 
 .yokai-cadran img {
@@ -137,62 +143,39 @@ footer {
   z-index: 1;
 }
 
-/* --- Liens radiaux parfaitement centrés --- */
-.radial-links {
+/* --- Liens du menu radial SVG --- */
+.radial-svg {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
   top: 0;
   left: 0;
-}
-
-.radial-link {
-  position: absolute;
-  width: 110px;
-  padding: 8px 10px;
-  background: white;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: bold;
-  color: #f57c00;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  opacity: 0;
+  width: 300px;
+  height: 300px;
   pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2;
 }
 
-/* Ouverture */
-.radial-links.open .radial-link {
-  opacity: 1;
+.radial-svg a {
   pointer-events: auto;
 }
 
-/* Disposition */
-.top-left {
-  top: 25%;
-  left: 25%;
-  transform: translate(-50%, -50%);
+.arc {
+  font-size: 1.1rem;
+  font-family: 'Luckiest Guy', cursive;
+  font-weight: bold;
+  fill: white;
+  stroke: black;
+  stroke-width: 0.6px;
+  transition: all 0.3s ease;
 }
 
-.top-right {
-  top: 25%;
-  left: 75%;
-  transform: translate(-50%, -50%);
+.arc:hover {
+  filter: drop-shadow(0 0 5px white) drop-shadow(0 0 12px currentColor);
 }
 
-.bottom-left {
-  top: 75%;
-  left: 25%;
-  transform: translate(-50%, -50%);
-}
-
-.bottom-right {
-  top: 75%;
-  left: 75%;
-  transform: translate(-50%, -50%);
-}
-
+.arc-accueil    { fill: #ff99cc; }
+.arc-yokai      { fill: #99cc33; }
+.arc-infos      { fill: #66ccff; }
+.arc-ressources { fill: #cc99ff; }
 
 /* --- Animations --- */
 @keyframes fadeIn {
@@ -202,14 +185,28 @@ footer {
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes popIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 /* --- Responsive --- */
 @media (max-width: 600px) {
   .radial-link {
-    width: 80px;
-    font-size: 14px;
+    font-size: 1rem;
+    padding: 4px 8px;
   }
 
   .yokai-cadran {
@@ -217,7 +214,23 @@ footer {
     height: 250px;
   }
 
-  .radial-links.open .radial-link {
-    transform: rotate(var(--angle)) translate(90px) rotate(calc(-1 * var(--angle)));
+  .top-left {
+    top: 52%;
+    left: 22%;
+  }
+
+  .top-right {
+    top: 28%;
+    left: 50%;
+  }
+
+  .bottom-left {
+    top: 75%;
+    left: 50%;
+  }
+
+  .bottom-right {
+    top: 52%;
+    left: 78%;
   }
 }
