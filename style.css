@@ -166,6 +166,7 @@ footer {
   stroke: black;
   stroke-width: 0.6px;
   transition: all 0.3s ease;
+  will-change: transform;
 }
 
 .arc:hover {
@@ -232,5 +233,30 @@ footer {
   .bottom-right {
     top: 52%;
     left: 78%;
+  }
+}
+@media (max-width: 600px) {
+  .yokai-cadran {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .radial-svg {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .radial-button {
+    width: 80px;
+    height: 80px;
+  }
+
+  .radial-button img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .arc {
+    font-size: 1.4rem;
   }
 }

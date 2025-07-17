@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yo-kai Watch Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Luckiest+Guy&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -51,7 +52,7 @@
       </text>
       <text class="arc arc-ressources">
         <a xlink:href="ressources.html">
-          <textPath href="#arc-ressources" startOffset="58%" text-anchor="middle">Ressources</textPath>
+          <textPath href="#arc-ressources" startOffset="62%" text-anchor="middle">Ressources</textPath>
         </a>
       </text>
     </svg>
@@ -82,20 +83,6 @@
     Site développé avec ❤️ par Sasha.
   </footer>
 
-  <script>
-    const btn = document.querySelector('.radial-button');
-    const cadran = document.querySelector('.yokai-cadran');
-    const overlay = document.querySelector('.overlay');
-
-    btn.addEventListener('click', () => {
-      cadran.classList.toggle('active');
-      overlay.classList.toggle('active');
-    });
-
-    overlay.addEventListener('click', () => {
-      cadran.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
