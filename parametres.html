@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="fr" class="preload">
+<html lang="fr">
 <head>
   <!-- 🧠 Appliquer dark-mode immédiatement -->
   <script>
     if (localStorage.getItem("dark-mode") === "enabled") {
-      document.addEventListener("DOMContentLoaded", () => {
-        document.body.classList.add("dark-mode");
-      });
+      document.documentElement.classList.add("dark-mode");
     }
   </script>
 
   <!-- 🎨 Styles inline pour éviter les flashs visuels -->
   <style>
     html.dark-mode {
-      background: ('yokaibackground.png');
+      background: transparent;
       color: #eee;
     }
     html:not(.dark-mode) {
-      background: ('yokaibackground.png');
+      background: transparent;
       color: #111;
     }
     html, body {
@@ -44,7 +41,6 @@
     }
   </script>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="filtrage.css" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -53,23 +49,24 @@
 <body class="preload">
   <div id="page-transition" class="transition-overlay"></div>
   <header>
-    <img src="logo-yokai.png" alt="Logo Yo-kai Zone" class="site-logo" />
+    <img src="logo-yokai.png" alt="Logo Yo-kai Zone" class="site-logo">
   </header>
 
+  <!-- Bouton pour ouvrir le cadran -->
   <div class="radial-menu-container">
     <button class="radial-button">
-      <img src="yokaiwatch.png" alt="Ouvrir le cadran Yo-kai" />
+      <img src="yokaiwatch.png" alt="Ouvrir le cadran Yo-kai">
     </button>
   </div>
 
+  <!-- Overlay flou -->
   <div class="overlay"></div>
   <div class="background-overlay"></div>
 
+  <!-- Cadran Yo-kai central -->
   <div class="yokai-cadran">
-    <img src="menu1.png" alt="Montre Yo-kai" />
-    <a href="parametres.html" class="settings-button">
-      <img src="gear-icon.png" alt="Paramètres" />
-    </a>
+    <img src="menu1.png" alt="Montre Yo-kai">
+
     <svg class="radial-svg" viewBox="0 0 300 300">
       <defs>
         <path id="arc-accueil" d="M 40,160 A 110,110 0 0,1 160,40" />
@@ -77,6 +74,7 @@
         <path id="arc-infos" d="M 260,160 A 110,110 0 0,1 160,260" />
         <path id="arc-ressources" d="M 160,250 A 110,110 0 0,1 40,150" />
       </defs>
+
       <text class="arc arc-accueil">
         <a xlink:href="index.html">
           <textPath href="#arc-accueil" startOffset="50%" text-anchor="middle">Accueil</textPath>
@@ -100,36 +98,25 @@
     </svg>
   </div>
 
-  <main class="yokai-page">
-    <h1 class="section-title">Yo-kai</h1>
+  <main class="parametres-page">
+    <h1 class="settings-title">Paramètres</h1>
 
-    <!-- 🔍 Barre de recherche + bouton Filtres alignés -->
-    <div class="search-filter-aligned">
-      <div class="search-box">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="search-yokai" placeholder="Rechercher un Yo-kai..." autocomplete="off" />
+    <!-- 🌙 Interrupteur du mode sombre -->
+    <section class="setting-block">
+      <div class="switch-wrapper">
+        <span class="switch-label">Activer le mode sombre</span>
+        <label class="switch-toggle">
+          <input type="checkbox" id="toggle-dark" />
+          <span class="slider"></span>
+        </label>
       </div>
-      <div class="filter-button-wrap">
-        <button id="open-filtres" class="btn-filtres">Filtres</button>
-        <div class="filter-menu-column" id="filter-menu-column">
-        <!-- Injecté dynamiquement -->
-        </div>
-      </div>
-    </div>
-
-  <!-- 🧾 Filtres actifs -->
-    <div class="filtres-actifs" id="active-filters">
-      <button id="btn-reset-filters" class="reset-filters">Réinitialiser</button>
-    </div>
-
-  <!-- 📦 Liste des Yo-kai -->
-    <section id="yo-kai-list">
-    <!-- Injecté par script.js -->
     </section>
+
+    <!-- Tu pourras ajouter d'autres options ici -->
   </main>
 
   <footer>
-    Encyclopédie Yo-kai 🌀 – par Sasha.
+    Page des paramètres 🛠️ – Développé avec ❤️ par Sasha.
   </footer>
 
   <script src="script.js"></script>

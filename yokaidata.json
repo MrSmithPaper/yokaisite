@@ -1,0 +1,22 @@
+[
+  {
+    "nom": "Whisper",
+    "description": "Un Yo-kai guide spirituel souvent exaspérant.",
+    "image": "whisper.png",
+    "tribu": "Insaisissables",
+    "rang": "C",
+    "categorie": ["Legendaires"],
+    "attribut": "absorbtion",
+    "jeux": "Yo-kai Watch 2"
+  },
+  {
+    "nom": "Jibanyan",
+    "description": "Le chat rouge combatif adoré de tous.",
+    "image": "jibanyan.png",
+    "tribu": "Mignon",
+    "rang": "D",
+    "categorie": ["none"],
+    "attribut": "Feu",
+    "jeux": "Yo-kai Watch 1"
+  }
+]

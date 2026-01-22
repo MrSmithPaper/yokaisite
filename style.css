@@ -1,33 +1,81 @@
-/* --- Reset de base --- */
+/* 🔒 Préchargement masqué */
+html.loading body {
+  visibility: hidden;
+}
+
+/* 🔁 Reset global */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* --- Body & police --- */
+/* 🌞 Mode clair */
 body {
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* 🌞 Mode clair uniquement si dark-mode est désactivé */
+body:not(.dark-mode) {
   background-color: #f2f2f2;
   color: #222;
-  overflow-x: hidden;
+  background-image: url('yokaibackground.png');
 }
 
-/* --- Header --- */
-header {
-  background-color: #fdd835;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+/* 🌙 Mode sombre uniquement si dark-mode est actif */
+body.dark-mode {
+  background-color: #000;
+  color: #eee;
+  background-image: url('yokaibackground-dark.png');
+  background-attachment: fixed;
 }
 
-header h1 {
+
+/* 🖋️ Titres */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: #A47AFF;
+}
+
+.section-title {
   font-family: 'Luckiest Guy', cursive;
-  font-size: 2rem;
-  color: #222;
+  font-size: 2.8rem;
+  color: #f57c00;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.2;
 }
 
-/* --- Sections --- */
+body.dark-mode .section-title {
+  color: #A47AFF;
+}
+
+/* 🔷 Logo */
+.site-logo {
+  max-width: 180px;
+  margin: 0 auto;
+  display: block;
+  padding: 20px;
+}
+
+body.dark-mode .site-logo {
+  filter: brightness(0.9);
+}
+
+/* 🧭 Header */
+header {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* 🧩 Sections principales */
 .section {
   padding: 50px 20px;
   margin: 40px auto;
@@ -36,12 +84,13 @@ header h1 {
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.4s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .section h2 {
   font-family: 'Luckiest Guy', cursive;
   font-size: 1.8rem;
-  color: #f57c00;
+  color: #f58b00;
   margin-bottom: 10px;
 }
 
@@ -50,7 +99,12 @@ header h1 {
   line-height: 1.6;
 }
 
-/* --- Footer --- */
+body.dark-mode .section {
+  background-color: #1c1c1c;
+  color: #eee;
+}
+
+/* 🧼 Footer */
 footer {
   background-color: #fff;
   text-align: center;
@@ -60,7 +114,12 @@ footer {
   color: #777;
 }
 
-/* --- Bouton menu radial --- */
+body.dark-mode footer {
+  background-color: #111;
+  color: #aaa;
+}
+
+/* 🧪 Radial Menu */
 .radial-menu-container {
   position: fixed;
   top: 20px;
@@ -72,7 +131,7 @@ footer {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #fdd835;
+  background-color: #ffffff;
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -84,7 +143,16 @@ footer {
 }
 
 .radial-button:hover {
-  background-color: #fbc02d;
+  background-color: #838383;
+}
+
+body.dark-mode .radial-button {
+  background-color: #222;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+}
+
+body.dark-mode .radial-button:hover {
+  background-color: #555;
 }
 
 .radial-button img {
@@ -94,7 +162,7 @@ footer {
   object-fit: contain;
 }
 
-/* --- Overlay flou --- */
+/* 🧊 Overlay flou */
 .overlay {
   position: fixed;
   inset: 0;
@@ -111,7 +179,7 @@ footer {
   pointer-events: auto;
 }
 
-/* --- Cadran Yo-kai central --- */
+/* 🌀 Cadran Yo-kai central */
 .yokai-cadran {
   position: fixed;
   top: 50%;
@@ -143,7 +211,7 @@ footer {
   z-index: 1;
 }
 
-/* --- Liens du menu radial SVG --- */
+/* 🧭 SVG Texte autour du cadran */
 .radial-svg {
   position: absolute;
   top: 0;
@@ -173,12 +241,40 @@ footer {
   filter: drop-shadow(0 0 5px white) drop-shadow(0 0 12px currentColor);
 }
 
+body.dark-mode .arc:hover {
+  filter: drop-shadow(0 0 4px #A47AFF);
+}
+
+/* Couleurs spécifiques aux arcs */
 .arc-accueil    { fill: #ff99cc; }
 .arc-yokai      { fill: #99cc33; }
 .arc-infos      { fill: #66ccff; }
 .arc-ressources { fill: #cc99ff; }
 
-/* --- Animations --- */
+/* 🛠 Bouton Paramètres */
+.settings-button {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.settings-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.settings-button:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* 🔮 Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -203,38 +299,7 @@ footer {
   }
 }
 
-/* --- Responsive --- */
-@media (max-width: 600px) {
-  .radial-link {
-    font-size: 1rem;
-    padding: 4px 8px;
-  }
-
-  .yokai-cadran {
-    width: 250px;
-    height: 250px;
-  }
-
-  .top-left {
-    top: 52%;
-    left: 22%;
-  }
-
-  .top-right {
-    top: 28%;
-    left: 50%;
-  }
-
-  .bottom-left {
-    top: 75%;
-    left: 50%;
-  }
-
-  .bottom-right {
-    top: 52%;
-    left: 78%;
-  }
-}
+/* 📱 Responsive pour le cadran Yo-kai */
 @media (max-width: 600px) {
   .yokai-cadran {
     width: 90vw;
@@ -259,4 +324,144 @@ footer {
   .arc {
     font-size: 1.4rem;
   }
+
+  .site-logo {
+    max-width: 140px;
+  }
 }
+
+/* ⚙️ Page Paramètres */
+.parametres-page {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.parametres-page h1,
+.settings-title {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 2.4rem;
+  color: #f57c00;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+body.dark-mode .parametres-page {
+  background-color: #1c1c1c;
+  color: #eee;
+}
+
+body.dark-mode .settings-title {
+  color: #A47AFF;
+}
+
+/* 🔘 Switch dark-mode */
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.switch-label {
+  font-size: 1rem;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 1px 2px #ccc;
+}
+
+body.dark-mode .switch-label {
+  color: #eee;
+  text-shadow: none;
+}
+
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; width: 26px;
+  left: 4px; bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch-toggle input:checked + .slider {
+  background-color: #333;
+}
+
+.switch-toggle input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* 🧪 Bouton toggle dark-mode (icône) */
+.dark-toggle-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  transition: transform 0.3s ease;
+}
+
+.dark-toggle-button img {
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.dark-toggle-button:hover img {
+  transform: scale(1.15);
+}
+
+/* 👁️ Voile noir */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 🌗 Apparition douce de la page */
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+

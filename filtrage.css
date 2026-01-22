@@ -1,0 +1,600 @@
+/* 🔍 Centrage barre de recherche */
+.search-row-centered {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* ⚙️ Centrage bouton filtre + colonne menu */
+.filter-button-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* ⚙️ Bouton "Filtres" */
+.btn-filtres {
+  background-color: #f57c00;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .btn-filtres {
+  background-color: #A47AFF;
+  color: #000;
+}
+
+/* 🔍 Champ de recherche + loupe */
+.search-box {
+  position: relative;
+  display: inline-block;
+}
+
+.search-box input {
+  padding: 12px 42px 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #f57c00;
+  border-radius: 10px;
+  width: 280px;
+  background-color: #fff;
+  color: #222;
+  transition: box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.search-box input::placeholder {
+  color: #999;
+}
+
+body.dark-mode .search-box input {
+  background-color: #111;
+  color: #eee;
+  border-color: #A47AFF;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: #aaa;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: #f57c00;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+body.dark-mode .search-icon {
+  color: #A47AFF;
+}
+
+/* 🧾 Filtres actifs */
+.filtres-actifs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filtres-actifs .tag {
+  background-color: #f57c00;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filtres-actifs .remove-filter {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+body.dark-mode .filtres-actifs .tag {
+  background-color: #A47AFF;
+  color: #000;
+}
+
+/* 🔄 Bouton Réinitialiser */
+.reset-filters {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+body.dark-mode .reset-filters {
+  background-color: #444;
+  color: #eee;
+}
+
+/* 🌊 Colonne flottante sous le bouton filtres */
+.filter-menu-column {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  min-width: 160px;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 0.2s ease;
+  z-index: 99;
+}
+
+.filter-menu-column.active {
+  display: flex;
+}
+
+body.dark-mode .filter-menu-column {
+  background-color: #1c1c1c;
+  color: #eee;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.05);
+}
+
+/* 📁 Boutons principaux ou sous-options */
+.filter-menu-column button {
+  background: #f57c00;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.filter-menu-column button:hover {
+  background: #e06600;
+}
+
+body.dark-mode .filter-menu-column button {
+  background: #A47AFF;
+  color: #000;
+}
+
+body.dark-mode .filter-menu-column button:hover {
+  background: #8C66DA;
+}
+
+/* ✨ Animation fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 650px) {
+  .search-box input {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .search-row-centered,
+  .filter-button-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-menu-column {
+    position: static;
+    margin-top: 10px;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  .filter-menu-column button {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+}
+
+/* 🔍 Barre + Filtres alignés horizontalement */
+.search-filter-aligned {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+/* 🔍 Zone de recherche */
+.search-box {
+  position: relative;
+  display: inline-block;
+}
+
+.search-box input {
+  padding: 12px 42px 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #f57c00;
+  border-radius: 10px;
+  width: 280px;
+  background-color: #fff;
+  color: #222;
+  transition: box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.search-box input::placeholder {
+  color: #999;
+}
+
+body.dark-mode .search-box input {
+  background-color: #111;
+  color: #eee;
+  border-color: #A47AFF;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: #aaa;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: #f57c00;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+body.dark-mode .search-icon {
+  color: #A47AFF;
+}
+
+/* ⚙️ Bouton Filtres à droite */
+.filter-button-wrap {
+  position: relative;
+}
+
+.btn-filtres {
+  background-color: #f57c00;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .btn-filtres {
+  background-color: #A47AFF;
+  color: #000;
+}
+
+/* 🌀 Colonne flottante sous Filtres */
+.filter-menu-column {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 160px;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 0.2s ease;
+  z-index: 99;
+}
+
+.filter-menu-column.active {
+  display: flex;
+}
+
+body.dark-mode .filter-menu-column {
+  background-color: #1c1c1c;
+  color: #eee;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.05);
+}
+
+/* Boutons menu colonne */
+.filter-menu-column button {
+  background: #f57c00;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.filter-menu-column button:hover {
+  background: #e06600;
+}
+
+body.dark-mode .filter-menu-column button {
+  background: #A47AFF;
+  color: #000;
+}
+
+body.dark-mode .filter-menu-column button:hover {
+  background: #8C66DA;
+}
+
+/* 🧾 Filtres actifs */
+.filtres-actifs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filtres-actifs .tag {
+  background-color: #f57c00;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filtres-actifs .remove-filter {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+body.dark-mode .filtres-actifs .tag {
+  background-color: #A47AFF;
+  color: #000;
+}
+
+/* 🔄 Bouton Réinitialiser */
+.reset-filters {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+body.dark-mode .reset-filters {
+  background-color: #444;
+  color: #eee;
+}
+
+/* ✨ Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 650px) {
+  .search-filter-aligned {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .filter-menu-column {
+    position: static;
+    margin-top: 10px;
+    box-shadow: none;
+  }
+
+  .filter-menu-column button {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+}
+
+/* 🌀 Colonne flottante sous Filtres (unifiée) */
+.filter-menu-column {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 160px;
+  max-height: 260px;
+  overflow-y: auto;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 0.2s ease;
+  z-index: 99;
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #f57c00 transparent;
+}
+
+/* 🌞 Scrollbar Chrome/Safari (clair) */
+.filter-menu-column::-webkit-scrollbar {
+  width: 6px;
+}
+.filter-menu-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+.filter-menu-column::-webkit-scrollbar-thumb {
+  background-color: #f57c00;
+  border-radius: 4px;
+}
+
+/* 🌚 Dark-mode styles */
+body.dark-mode .filter-menu-column {
+  background-color: #1c1c1c;
+  color: #eee;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.05);
+
+  /* Firefox scrollbar */
+  scrollbar-color: #A47AFF transparent;
+}
+
+/* 🌚 Scrollbar Chrome/Safari (sombre) */
+body.dark-mode .filter-menu-column::-webkit-scrollbar {
+  width: 6px;
+}
+body.dark-mode .filter-menu-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+body.dark-mode .filter-menu-column::-webkit-scrollbar-thumb {
+  background-color: #A47AFF;
+  border-radius: 4px;
+}
+
+.yokai-card {
+  border-radius: 10px;
+  padding: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.yokai-card:hover {
+  transform: translateY(-5px);
+}
+
+.yokai-infos {
+  text-align: center;
+}
+
+.tags-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.icon-tag {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* 📦 Grille responsive pour les cartes Yo-kai */
+#yo-kai-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+/* 🃏 Carte de base */
+.yokai-card {
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  background-color: #fff; /* par défaut en clair */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.yokai-card:hover {
+  transform: translateY(-4px);
+}
+.yokai-card img {
+  max-width: 80%;
+  border-radius: 10px;
+}
+
+/* 🌗 Fond tribal pour mode sombre */
+body.dark-mode .yokai-card.tribu-mignon         { background-color: #302030; }
+body.dark-mode .yokai-card.tribu-vaillant       { background-color: #302424; }
+body.dark-mode .yokai-card.tribu-costauds       { background-color: #332B20; }
+body.dark-mode .yokai-card.tribu-insaisissables { background-color: #202830; }
+body.dark-mode .yokai-card.tribu-bienveillants  { background-color: #1E3020; }
+body.dark-mode .yokai-card.tribu-mysterieux     { background-color: #303020; }
+body.dark-mode .yokai-card.tribu-sinistres      { background-color: #302035; }
+body.dark-mode .yokai-card.tribu-sombres        { background-color: #202838; }
+body.dark-mode .yokai-card.tribu-enmas          { background-color: #3A1010; }
+body.dark-mode .yokai-card.tribu-wandroïdes     { background-color: #203040; }
+body.dark-mode .yokai-card.tribu-perfides       { background-color: #2B2C38; }
+body.dark-mode .yokai-card.tribu-boss           { background-color: #1b0016; }
+
+
+/* ☀️ Fond par défaut clair */
+body:not(.dark-mode) .yokai-card {
+  background-color: #fff;
+}
+
+/* ✨ Glow tribal au survol */
+.yokai-card.tribu-mignon:hover         { box-shadow: 0 0 12px #FFB6FF; }
+.yokai-card.tribu-vaillant:hover       { box-shadow: 0 0 12px #FD7477; }
+.yokai-card.tribu-costauds:hover       { box-shadow: 0 0 12px #F5A94D; }
+.yokai-card.tribu-insaisissables:hover { box-shadow: 0 0 12px #80FFFF; }
+.yokai-card.tribu-bienveillants:hover  { box-shadow: 0 0 12px #95FF94; }
+.yokai-card.tribu-mysterieux:hover     { box-shadow: 0 0 12px #FFFC94; }
+.yokai-card.tribu-sinistres:hover      { box-shadow: 0 0 12px #E676FF; }
+.yokai-card.tribu-sombres:hover        { box-shadow: 0 0 12px #61A1F2; }
+.yokai-card.tribu-enmas:hover          { box-shadow: 0 0 12px #E20504; }
+.yokai-card.tribu-wandroïdes:hover     { box-shadow: 0 0 12px #97D5FF; }
+.yokai-card.tribu-perfides:hover       { box-shadow: 0 0 12px #AFB7E0; }
+
+/* 📎 Organisation interne d'une carte */
+.yokai-infos {
+  text-align: center;
+}
+
+.tags-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.icon-tag {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.yokai-img {
+  width: 80%;
+  max-height: 160px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}

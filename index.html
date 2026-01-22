@@ -1,19 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- 🧠 Appliquer dark-mode immédiatement -->
+  <script>
+    if (localStorage.getItem("dark-mode") === "enabled") {
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("dark-mode");
+      });
+    }
+  </script>
+
+  <!-- 🎨 Styles inline pour éviter les flashs visuels -->
+  <style>
+    html.dark-mode {
+      background: #111;
+      color: #eee;
+    }
+    html:not(.dark-mode) {
+      background: #fff;
+      color: #111;
+    }
+    html, body {
+      transition: none !important;
+    }
+  </style>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yo-kai Watch Menu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Luckiest+Guy&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
+  <!-- 👾 Préchargement de styles et assets -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="yokaiwatch.png" as="image">
+  <link rel="preload" href="menu1.png" as="image">
+  <link rel="preload" href="gear-icon.png" as="image">
+
+  <!-- 🖋️ Fonts & styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <script>
+    if (localStorage.getItem("dark-mode") === "enabled") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body class="preload">
+  <div id="page-transition" class="transition-overlay"></div>
   <header>
-    <h1>Menu Yo-kai Watch</h1>
+    <img src="logo-yokai.png" alt="Logo Yo-kai Zone" class="site-logo">
   </header>
 
-  <!-- Conteneur du bouton -->
+  <!-- Bouton pour ouvrir le cadran -->
   <div class="radial-menu-container">
     <button class="radial-button">
       <img src="yokaiwatch.png" alt="Ouvrir le cadran Yo-kai">
@@ -22,17 +63,22 @@
 
   <!-- Overlay flou -->
   <div class="overlay"></div>
+  <div class="background-overlay"></div>
 
-  <!-- Cadran Yo-kai central avec texte courbé cliquable -->
+  <!-- Cadran Yo-kai central -->
   <div class="yokai-cadran">
     <img src="menu1.png" alt="Montre Yo-kai">
+  <!-- Bouton paramètres au centre du cadran -->
+  <a href="parametres.html" class="settings-button">
+    <img src="gear-icon.png" alt="Paramètres" />
+  </a>
 
     <svg class="radial-svg" viewBox="0 0 300 300">
       <defs>
         <path id="arc-accueil" d="M 40,160 A 110,110 0 0,1 160,40" />
         <path id="arc-yokai" d="M 160,40 A 110,110 0 0,1 260,160" />
         <path id="arc-infos" d="M 260,160 A 110,110 0 0,1 160,260" />
-        <path id="arc-ressources" d="M 160,250 A 110,110 0 0,1 40,150" /> <!-- Réajusté -->
+        <path id="arc-ressources" d="M 160,250 A 110,110 0 0,1 40,150" />
       </defs>
 
       <text class="arc arc-accueil">
@@ -58,7 +104,6 @@
     </svg>
   </div>
 
-  <!-- Sections de contenu -->
   <section class="section" id="accueil">
     <h2>Accueil</h2>
     <p>Bienvenue dans l’univers Yo-kai&nbsp;!</p>
@@ -83,6 +128,6 @@
     Site développé avec ❤️ par Sasha.
   </footer>
 
-  <script src="script.js"></script>
-</body>
+<script src="script.js"></script>
+<body class="preload">
 </html>
